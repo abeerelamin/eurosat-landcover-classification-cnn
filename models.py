@@ -1,4 +1,3 @@
-# models.py
 import warnings
 import tensorflow as tf
 from tensorflow.keras import Sequential, Model
@@ -174,6 +173,7 @@ def build_attention_cnn(num_classes: int = NUM_CLASSES):
 # ==== CNN with STN ====
 def build_stn_cnn(num_classes: int = NUM_CLASSES):
     inp = Input(shape=(IMG_SIZE, IMG_SIZE, 3))
+
     x = SimpleSpatialTransformer()(inp)
     x = Conv2D(32, 3, activation="relu")(x)
     x = MaxPooling2D()(x)
