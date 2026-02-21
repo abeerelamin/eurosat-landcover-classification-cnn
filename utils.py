@@ -1,4 +1,3 @@
-# utils.py
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import (
@@ -33,6 +32,7 @@ def plot_history(history, name: str):
 def evaluate_model(model, val_ds, class_names):
     # Collect predictions
     y_true, y_pred = [], []
+
     for xb, yb in val_ds:
         probs = model.predict(xb, verbose=0)
         y_pred.append(np.argmax(probs, axis=1))
@@ -50,7 +50,9 @@ def evaluate_model(model, val_ds, class_names):
     plt.show()
 
     print("Classification Report:")
-    print(classification_report(y_true, y_pred, target_names=class_names))
+    print(
+        classification_report(y_true, y_pred, target_names=class_names)
+    )
 
 
 def per_class_accuracy(model, dataset, class_names):
@@ -67,6 +69,7 @@ def per_class_accuracy(model, dataset, class_names):
                 correct[t] += 1
 
     accs = correct / np.maximum(total, 1)
+
     import pandas as pd
 
     return (
